@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="bg-black pt-16 pb-8 border-t border-white/10">
@@ -5,10 +7,13 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#8A2BE2] to-[#FF1493] flex items-center justify-center font-bold text-white">
-                UP
-              </div>
-              <span className="font-bold text-xl tracking-tight text-white">UPMusic<span className="text-[#FF1493]">GV</span></span>
+              <Image
+                src="/logo.png"
+                alt="UPMusic GV"
+                width={360}
+                height={120}
+                className="h-12 md:h-16 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,20,147,0.3)] opacity-90 hover:opacity-100 transition-opacity"
+              />
             </div>
             <p className="text-gray-400 max-w-sm mb-6">
               UpMusic - Centro de Capacitação Musical em Governador Valadares.
