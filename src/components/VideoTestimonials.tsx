@@ -113,6 +113,7 @@ export default function VideoTestimonials() {
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110 pointer-events-none"
                 sizes="(max-width: 768px) 240px, 320px"
+                unoptimized
               />
 
               {/* Overlay Escuro Leve */}

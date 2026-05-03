@@ -73,7 +73,7 @@ export default function Hero() {
             <div className="flex items-center gap-[-10px]">
               {[1, 2, 3, 4, 5].map((i) => (
                 <div key={i} className={`w-10 h-10 rounded-full border-2 border-black bg-gray-800 ${i !== 1 ? '-ml-3' : ''} overflow-hidden relative`}>
-                  <Image src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="Aluno" fill className="object-cover" />
+                  <Image src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="Aluno" fill className="object-cover" unoptimized />
                 </div>
               ))}
             </div>
