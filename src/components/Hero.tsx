@@ -1,5 +1,4 @@
-"use client";
-
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Music, Star, PlayCircle, Users } from "lucide-react";
 import HeroBackground from "./HeroBackground";
@@ -71,8 +70,8 @@ export default function Hero() {
           >
             <div className="flex items-center gap-[-10px]">
               {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className={`w-10 h-10 rounded-full border-2 border-black bg-gray-800 ${i !== 1 ? '-ml-3' : ''} overflow-hidden`}>
-                  <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="Aluno" className="w-full h-full object-cover" />
+                <div key={i} className={`w-10 h-10 rounded-full border-2 border-black bg-gray-800 ${i !== 1 ? '-ml-3' : ''} overflow-hidden relative`}>
+                  <Image src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="Aluno" fill className="object-cover" />
                 </div>
               ))}
             </div>

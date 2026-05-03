@@ -1,5 +1,4 @@
-"use client";
-
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Zap, Target } from "lucide-react";
@@ -16,7 +15,7 @@ const musicCards = [
 export default function Solution() {
   const [cards, setCards] = useState(musicCards);
 
-  // Troca automática a cada 3 segundos, sem drag
+  // Troca automática a cada 2.5 segundos, sem drag
   useEffect(() => {
     const interval = setInterval(() => {
       setCards((prev) => {
@@ -25,7 +24,7 @@ export default function Solution() {
         if (first) newCards.push(first);
         return newCards;
       });
-    }, 3000);
+    }, 2500);
 
     return () => clearInterval(interval);
   }, []);
@@ -62,7 +61,7 @@ export default function Solution() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <div className="flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-4 rounded-2xl w-full sm:w-auto text-left">
+              <div className="flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-4 rounded-2xl w-full sm:w-auto text-left transition-colors hover:border-white/20">
                 <div className="w-12 h-12 rounded-full bg-[#8A2BE2]/20 flex items-center justify-center shrink-0">
                   <Zap className="w-6 h-6 text-[#8A2BE2]" />
                 </div>
@@ -72,7 +71,7 @@ export default function Solution() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-4 rounded-2xl w-full sm:w-auto text-left">
+              <div className="flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-4 rounded-2xl w-full sm:w-auto text-left transition-colors hover:border-white/20">
                 <div className="w-12 h-12 rounded-full bg-[#FF1493]/20 flex items-center justify-center shrink-0">
                   <Target className="w-6 h-6 text-[#FF1493]" />
                 </div>
@@ -86,10 +85,6 @@ export default function Solution() {
 
           {/* DIREITA: Stack de Cards (Baralho) Automático */}
           <div className="flex-1 w-full flex items-center justify-center mt-12 lg:mt-0">
-            {/* 
-              A altura real física do container evita sobreposição com os textos.
-              No mobile, ele flui normalmente para baixo (flex-col). 
-            */}
             <div className="relative w-full max-w-[280px] md:max-w-[320px] aspect-[3/4] perspective-1000">
               <AnimatePresence mode="popLayout">
                 {cards.slice(0, 3).map((card, index) => {
@@ -101,22 +96,24 @@ export default function Solution() {
                       layout
                       initial={{ opacity: 0, scale: 0.8, y: 30 }}
                       animate={{
-                        opacity: 1 - index * 0.2, // Cards secundários com menor opacidade
-                        scale: 1 - index * 0.05,  // Menores
-                        y: index * 20,            // Offset Y para dar a ideia de pilha
-                        rotate: index === 0 ? 0 : index === 1 ? -3 : 3, // Rotação leve
+                        opacity: 1 - index * 0.2,
+                        scale: 1 - index * 0.05,
+                        y: index * 20,
+                        rotate: index === 0 ? 0 : index === 1 ? -3 : 3,
                         zIndex: 3 - index,
                       }}
-                      // Transição elegante (fade out e leve subida/zoom down) quando sai da pilha
                       exit={{ opacity: 0, y: -40, scale: 0.95, transition: { duration: 0.4 } }}
                       transition={{ type: "spring", stiffness: 200, damping: 20 }}
                       className="absolute inset-0 w-full h-full rounded-3xl overflow-hidden border border-white/20 shadow-[0_15px_50px_rgba(0,0,0,0.6)] bg-black pointer-events-none"
                     >
-                      <img
+                      <Image
                         src={card.image}
                         alt={card.title}
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 280px, 320px"
                       />
+
 
                       {/* Overlay para leitura */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />

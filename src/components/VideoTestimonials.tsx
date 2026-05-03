@@ -1,5 +1,4 @@
-"use client";
-
+import Image from "next/image";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, X } from "lucide-react";
@@ -106,10 +105,12 @@ export default function VideoTestimonials() {
               onClick={() => handleVideoClick(video.embedUrl)}
             >
               {/* Thumbnail */}
-              <img
+              <Image
                 src={video.thumb}
                 alt={video.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 pointer-events-none"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110 pointer-events-none"
+                sizes="(max-width: 768px) 240px, 320px"
               />
 
               {/* Overlay Escuro Leve */}
