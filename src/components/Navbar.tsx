@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
@@ -23,12 +24,15 @@ export default function Navbar() {
     >
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
-        <div className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#8A2BE2] to-[#FF1493] flex items-center justify-center font-bold text-white text-xl">
-            UP
-          </div>
-          <span className="font-bold text-xl tracking-tight text-white">UPMusic<span className="text-[#FF1493]">GV</span></span>
-        </div>
+        <a href="#" className="flex items-center hover:opacity-80 transition-opacity duration-300">
+          <Image
+            src="/logo.png"
+            alt="UPMusic"
+            width={360}
+            height={120}
+            className="h-16 md:h-24 w-auto object-contain drop-shadow-[0_0_15px_rgba(255,20,147,0.3)]"
+          />
+        </a>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">

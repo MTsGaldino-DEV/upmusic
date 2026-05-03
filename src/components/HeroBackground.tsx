@@ -21,9 +21,9 @@ export default function HeroBackground() {
       <motion.div
         animate={{ y: [0, -20, 0], scale: [1, 1.05, 1] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute w-full h-[90%] md:h-[80%] bottom-0 flex justify-center opacity-[0.5]"
+        className="absolute w-[180%] md:w-full h-[60%] md:h-[80%] bottom-0 flex justify-center opacity-[0.25] md:opacity-[0.14]"
       >
-        <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMax slice" className="w-full h-full blur-[1px]">
+        <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMax slice" className="w-full h-full blur-[0px] md:blur-[1px]">
           <defs>
             <linearGradient id="gradHero1" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#8A2BE2" stopOpacity="0" />
@@ -52,9 +52,9 @@ export default function HeroBackground() {
       <motion.div
         animate={{ y: [0, 15, 0], scale: [1.02, 1, 1.02] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute w-full h-[90%] md:h-[80%] bottom-0 flex justify-center opacity-[0.5]"
+        className="absolute w-[180%] md:w-full h-[60%] md:h-[80%] bottom-0 flex justify-center opacity-[0.20] md:opacity-[0.10]"
       >
-        <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMax slice" className="w-full h-full blur-[3px]">
+        <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMax slice" className="w-full h-full blur-[1px] md:blur-[3px]">
           <defs>
             <linearGradient id="gradHero2" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#FF1493" stopOpacity="0" />

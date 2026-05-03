@@ -6,6 +6,14 @@ import { Check } from "lucide-react";
 export default function Courses() {
   const courses = [
     {
+      name: "Violão",
+      price: "290",
+      oldPrice: "380",
+      color: "from-[#8A2BE2] to-[#340E9E]",
+      featured: true,
+      badge: "Mais Procurado"
+    },
+    {
       name: "Bateria / Cajon",
       price: "200",
       oldPrice: "280",
@@ -18,14 +26,6 @@ export default function Courses() {
       oldPrice: "300",
       color: "from-[#00BFFF] to-[#0000CD]",
       featured: false
-    },
-    {
-      name: "Violão",
-      price: "290",
-      oldPrice: "380",
-      color: "from-[#8A2BE2] to-[#340E9E]",
-      featured: true,
-      badge: "Mais Procurado"
     },
     {
       name: "Teclado / Piano",
@@ -61,7 +61,11 @@ export default function Courses() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              className={`relative p-1 rounded-2xl ${course.featured ? 'bg-gradient-to-b from-[#8A2BE2] to-[#FF1493]' : 'bg-white/10'} hover:scale-[1.02] transition-transform`}
+              className={`relative p-1 rounded-2xl ${
+                course.featured 
+                  ? 'bg-gradient-to-b from-[#8A2BE2] to-[#FF1493] transform md:-translate-y-4 scale-105 z-10 shadow-[0_0_30px_rgba(255,20,147,0.3)]' 
+                  : 'bg-white/10 mt-0 md:mt-4'
+              } hover:scale-[1.08] transition-all duration-300`}
             >
               {course.badge && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-[#8A2BE2] to-[#FF1493] text-white text-xs font-bold rounded-full shadow-lg whitespace-nowrap z-10">

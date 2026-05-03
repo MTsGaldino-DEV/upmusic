@@ -45,7 +45,7 @@ export default function HowItWorks() {
               >
                 <div className="w-24 h-24 rounded-full bg-black border border-white/20 flex items-center justify-center mb-8 relative shadow-[0_0_30px_rgba(255,20,147,0.15)] group-hover:border-[#FF1493] transition-colors">
                   <div className="absolute inset-2 rounded-full border border-dashed border-white/30 animate-[spin_10s_linear_infinite]" />
-                  <span className="text-3xl font-black bg-clip-text text-transparent bg-gradient-to-br from-white to-gray-500">{step.num}</span>
+                  <span className="text-4xl font-black bg-clip-text text-transparent bg-gradient-to-br from-[#8A2BE2] to-[#FF1493]">{step.num}</span>
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">{step.title}</h3>
                 <p className="text-gray-400 leading-relaxed">{step.desc}</p>

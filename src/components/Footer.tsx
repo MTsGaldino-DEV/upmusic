@@ -17,9 +17,9 @@ export default function Footer() {
               <br /> Juntos tornando o seu sonho, uma realidade!
             </p>
             <div className="text-gray-400 text-sm space-y-2">
-              <p>Rua Peçanha, 989 - Centro</p>
+              <p>Rua Da Imaginação, 989 - Centro</p>
               <p>Governador Valadares - MG</p>
-              <p>(33) 98411-4657</p>
+              <p>(33) 99999-9999</p>
             </div>
           </div>
 
