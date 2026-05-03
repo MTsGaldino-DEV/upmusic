@@ -1,80 +1,46 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence, PanInfo } from "framer-motion";
-import { Sparkles, MoveRight, MoveLeft } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Sparkles, Zap, Target } from "lucide-react";
 
+// Array Personalizável Original
 const musicCards = [
-  {
-    id: 1,
-    title: "Oceanos",
-    artist: "Ana Nóbrega",
-    image: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=600&auto=format&fit=crop"
-  },
-  {
-    id: 2,
-    title: "Evidências",
-    artist: "Chitãozinho & Xororó",
-    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=600&auto=format&fit=crop"
-  },
-  {
-    id: 3,
-    title: "Aleluia",
-    artist: "Gabriela Rocha",
-    image: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=600&auto=format&fit=crop"
-  },
-  {
-    id: 4,
-    title: "Aquarela",
-    artist: "Toquinho",
-    image: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?q=80&w=600&auto=format&fit=crop"
-  },
-  {
-    id: 5,
-    title: "Raridade",
-    artist: "Anderson Freire",
-    image: "https://images.unsplash.com/photo-1493225457124-a1a2a5956062?q=80&w=600&auto=format&fit=crop"
-  }
+  { id: 1, title: "A Thousand Years", artist: "Christina Perri", image: "/images/Christina.jpg" },
+  { id: 2, title: "Evidências", artist: "Chitãozinho & Xororó", image: "/images/xitaozinho.jpg" },
+  { id: 3, title: "Aleluia", artist: "Gabriela Rocha", image: "/images/gabriela.jpg" },
+  { id: 4, title: "All of me", artist: "John Legend", image: "/images/john.jpg" },
+  { id: 5, title: "Raridade", artist: "Anderson Freire", image: "/images/nair.jpg" }
 ];
 
 export default function Solution() {
   const [cards, setCards] = useState(musicCards);
-  const [exitX, setExitX] = useState(0);
 
-  const handleSwipe = (direction: 'left' | 'right') => {
-    setExitX(direction === 'left' ? -300 : 300);
-    
-    // Pequeno delay para a animação de saída acontecer antes de reordenar
-    setTimeout(() => {
+  // Troca automática a cada 3 segundos, sem drag
+  useEffect(() => {
+    const interval = setInterval(() => {
       setCards((prev) => {
         const newCards = [...prev];
         const first = newCards.shift();
         if (first) newCards.push(first);
         return newCards;
       });
-    }, 200);
-  };
+    }, 3000);
 
-  const handleDragEnd = (e: any, info: PanInfo) => {
-    const swipeThreshold = 80;
-    if (info.offset.x < -swipeThreshold) {
-      handleSwipe('left');
-    } else if (info.offset.x > swipeThreshold) {
-      handleSwipe('right');
-    }
-  };
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="py-24 relative overflow-hidden" id="metodo">
-      {/* Background Glows */}
       <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#8A2BE2]/10 rounded-full blur-[150px] -z-10" />
       <div className="absolute top-1/2 right-1/4 translate-x-1/4 -translate-y-1/2 w-[400px] h-[400px] bg-[#FF1493]/10 rounded-full blur-[120px] -z-10" />
 
       <div className="container mx-auto px-6 md:px-12">
-        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-8">
-          
-          {/* ESQUERDA: Textos e Informações */}
-          <motion.div 
+        {/* Layout em 2 colunas: Flex column no mobile, Flex row no desktop */}
+        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-12">
+
+          {/* ESQUERDA: Textos */}
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -85,78 +51,90 @@ export default function Solution() {
               <Sparkles className="w-4 h-4" />
               O Método UPMusic
             </div>
-            
+
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
               Aprenda tocando suas <br className="hidden lg:block" />
               <span className="text-gradient">músicas favoritas</span>
             </h2>
-            
-            <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+
+            <p className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0">
               Esqueça meses de teoria chata antes de tocar algo legal. Com o nosso método prático, você aprende os fundamentos musicais <strong className="text-white">direto nas músicas que você ama ouvir</strong>.
             </p>
 
-            <div className="flex items-center justify-center lg:justify-start gap-4 text-gray-400 text-sm font-medium">
-              <MoveLeft className="w-5 h-5 text-[#8A2BE2] animate-pulse" />
-              Deslize as cartas para explorar
-              <MoveRight className="w-5 h-5 text-[#FF1493] animate-pulse" />
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <div className="flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-4 rounded-2xl w-full sm:w-auto text-left">
+                <div className="w-12 h-12 rounded-full bg-[#8A2BE2]/20 flex items-center justify-center shrink-0">
+                  <Zap className="w-6 h-6 text-[#8A2BE2]" />
+                </div>
+                <div>
+                  <h4 className="text-base font-bold text-white mb-0.5">Prática na 1ª Aula</h4>
+                  <p className="text-sm text-gray-400">Saia já tocando.</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-4 rounded-2xl w-full sm:w-auto text-left">
+                <div className="w-12 h-12 rounded-full bg-[#FF1493]/20 flex items-center justify-center shrink-0">
+                  <Target className="w-6 h-6 text-[#FF1493]" />
+                </div>
+                <div>
+                  <h4 className="text-base font-bold text-white mb-0.5">Foco no Objetivo</h4>
+                  <p className="text-sm text-gray-400">Sem enrolação.</p>
+                </div>
+              </div>
             </div>
           </motion.div>
 
-          {/* DIREITA: Stack de Cartas Interativas */}
-          <div className="flex-1 w-full flex items-center justify-center relative h-[450px] md:h-[550px] perspective-1000">
-            <AnimatePresence mode="popLayout">
-              {cards.slice(0, 3).map((card, index) => {
-                const isTop = index === 0;
-                
-                return (
-                  <motion.div
-                    key={card.id}
-                    layout
-                    initial={{ opacity: 0, scale: 0.8, y: 50 }}
-                    animate={{
-                      opacity: 1 - index * 0.15,
-                      scale: 1 - index * 0.05,
-                      y: index * 25,
-                      rotate: index === 0 ? 0 : index === 1 ? -4 : 4,
-                      zIndex: 3 - index,
-                    }}
-                    exit={{ x: exitX, opacity: 0, rotate: exitX > 0 ? 15 : -15 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    drag={isTop ? "x" : false}
-                    dragConstraints={{ left: 0, right: 0 }}
-                    dragElastic={0.8}
-                    onDragEnd={isTop ? handleDragEnd : undefined}
-                    className={`absolute w-[280px] sm:w-[320px] md:w-[360px] aspect-[3/4] rounded-3xl overflow-hidden border border-white/20 shadow-[0_15px_50px_rgba(0,0,0,0.6)] ${
-                      isTop ? "cursor-grab active:cursor-grabbing" : ""
-                    }`}
-                  >
-                    <img 
-                      src={card.image} 
-                      alt={card.title} 
-                      className="w-full h-full object-cover pointer-events-none" 
-                    />
-                    
-                    {/* Dark Overlay progressivo */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
-                    
-                    {/* Infos da Carta */}
-                    <div className="absolute bottom-8 left-8 right-8 pointer-events-none">
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: isTop ? 1 : 0.5, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                      >
-                        <h4 className="text-white font-bold text-3xl mb-1 drop-shadow-md">{card.title}</h4>
-                        <p className="text-[#FF1493] text-base font-medium drop-shadow-sm">{card.artist}</p>
-                      </motion.div>
-                    </div>
+          {/* DIREITA: Stack de Cards (Baralho) Automático */}
+          <div className="flex-1 w-full flex items-center justify-center mt-12 lg:mt-0">
+            {/* 
+              A altura real física do container evita sobreposição com os textos.
+              No mobile, ele flui normalmente para baixo (flex-col). 
+            */}
+            <div className="relative w-full max-w-[280px] md:max-w-[320px] aspect-[3/4] perspective-1000">
+              <AnimatePresence mode="popLayout">
+                {cards.slice(0, 3).map((card, index) => {
+                  const isTop = index === 0;
 
-                    {/* Sombra de destaque interna */}
-                    <div className="absolute inset-0 border-[2px] border-white/5 rounded-3xl pointer-events-none" />
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
+                  return (
+                    <motion.div
+                      key={card.id}
+                      layout
+                      initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                      animate={{
+                        opacity: 1 - index * 0.2, // Cards secundários com menor opacidade
+                        scale: 1 - index * 0.05,  // Menores
+                        y: index * 20,            // Offset Y para dar a ideia de pilha
+                        rotate: index === 0 ? 0 : index === 1 ? -3 : 3, // Rotação leve
+                        zIndex: 3 - index,
+                      }}
+                      // Transição elegante (fade out e leve subida/zoom down) quando sai da pilha
+                      exit={{ opacity: 0, y: -40, scale: 0.95, transition: { duration: 0.4 } }}
+                      transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                      className="absolute inset-0 w-full h-full rounded-3xl overflow-hidden border border-white/20 shadow-[0_15px_50px_rgba(0,0,0,0.6)] bg-black pointer-events-none"
+                    >
+                      <img
+                        src={card.image}
+                        alt={card.title}
+                        className="w-full h-full object-cover"
+                      />
+
+                      {/* Overlay para leitura */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+
+                      {/* Info da Carta */}
+                      <div className="absolute bottom-6 left-6 right-6 text-left">
+                        <motion.div
+                          animate={{ opacity: isTop ? 1 : 0.5 }}
+                        >
+                          <h4 className="text-white font-bold text-2xl md:text-3xl mb-1 drop-shadow-md">{card.title}</h4>
+                          {card.artist && <p className="text-[#FF1493] text-sm md:text-base font-medium drop-shadow-sm">{card.artist}</p>}
+                        </motion.div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
+            </div>
           </div>
 
         </div>

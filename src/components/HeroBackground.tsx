@@ -3,84 +3,45 @@
 import { motion } from "framer-motion";
 
 export default function HeroBackground() {
-  // Arcos inspirados em Wi-Fi / Ondas Sonoras.
-  // Utilizando elipses onde apenas a metade superior é visível (n-shape)
-  const arcs1 = Array.from({ length: 8 }).map((_, i) => ({
-    rx: 250 + i * 90,
-    ry: 120 + i * 60,
-  }));
-
-  const arcs2 = Array.from({ length: 6 }).map((_, i) => ({
-    rx: 280 + i * 100,
-    ry: 150 + i * 70,
-  }));
-
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 flex items-end justify-center">
-      {/* Camada 1: Roxo/Rosa (Movimento Lento e Fluido) */}
+    <div className="absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
+      {/* Cor de Fundo Base Negra */}
+      <div className="absolute inset-0 bg-black" />
+
+      {/* Orbes Neon Flutuantes da Marca (Dão cor ao fundo sem poluir) */}
       <motion.div
-        animate={{ y: [0, -20, 0], scale: [1, 1.05, 1] }}
+        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -top-32 left-[10%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-[#8A2BE2] rounded-full mix-blend-screen filter blur-[150px] md:blur-[200px]"
+      />
+      
+      <motion.div
+        animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute w-[180%] md:w-full h-[60%] md:h-[80%] bottom-0 flex justify-center opacity-[0.25] md:opacity-[0.14]"
-      >
-        <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMax slice" className="w-full h-full blur-[0px] md:blur-[1px]">
-          <defs>
-            <linearGradient id="gradHero1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#8A2BE2" stopOpacity="0" />
-              <stop offset="30%" stopColor="#8A2BE2" stopOpacity="1" />
-              <stop offset="70%" stopColor="#FF1493" stopOpacity="1" />
-              <stop offset="100%" stopColor="#FF1493" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          {arcs1.map((arc, i) => (
-            <ellipse
-              key={`layer1-${i}`}
-              cx="500"
-              cy="500"
-              rx={arc.rx}
-              ry={arc.ry}
-              fill="none"
-              stroke="url(#gradHero1)"
-              strokeWidth={1.5}
-              className="opacity-80"
-            />
-          ))}
-        </svg>
-      </motion.div>
+        className="absolute top-[20%] right-[10%] w-[350px] h-[350px] md:w-[500px] md:h-[500px] bg-[#FF1493] rounded-full mix-blend-screen filter blur-[150px] md:blur-[180px]"
+      />
 
-      {/* Camada 2: Rosa/Roxo (Movimento Reverso com Glow) */}
-      <motion.div
-        animate={{ y: [0, 15, 0], scale: [1.02, 1, 1.02] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute w-[180%] md:w-full h-[60%] md:h-[80%] bottom-0 flex justify-center opacity-[0.20] md:opacity-[0.10]"
-      >
-        <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMax slice" className="w-full h-full blur-[1px] md:blur-[3px]">
-          <defs>
-            <linearGradient id="gradHero2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#FF1493" stopOpacity="0" />
-              <stop offset="40%" stopColor="#FF1493" stopOpacity="1" />
-              <stop offset="60%" stopColor="#8A2BE2" stopOpacity="1" />
-              <stop offset="100%" stopColor="#8A2BE2" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          {arcs2.map((arc, i) => (
-            <ellipse
-              key={`layer2-${i}`}
-              cx="500"
-              cy="500"
-              rx={arc.rx}
-              ry={arc.ry}
-              fill="none"
-              stroke="url(#gradHero2)"
-              strokeWidth={2}
-            />
-          ))}
-        </svg>
-      </motion.div>
+      {/* Padrão GRID SaaS Premium */}
+      <div 
+        className="absolute inset-0 opacity-[0.18] md:opacity-[0.08] transition-opacity duration-300"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, #ffffff 1px, transparent 1px),
+            linear-gradient(to bottom, #ffffff 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px',
+          backgroundPosition: 'center center',
+          // O mask-image faz o fade out do grid nas bordas (foca no centro)
+          maskImage: 'radial-gradient(ellipse at 50% 40%, black 20%, transparent 80%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at 50% 40%, black 20%, transparent 80%)',
+        }}
+      />
 
-      {/* Overlay para mesclar suavemente o top e bottom com o fundo preto */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black" />
+      {/* Sobreposição escura sutil (Overlay) para garantir leitura do texto */}
+      <div className="absolute inset-0 bg-black/30 md:bg-black/10" />
+
+      {/* Fade inferior pesado para mesclar perfeitamente com a próxima seção */}
+      <div className="absolute inset-x-0 bottom-0 h-48 md:h-64 bg-gradient-to-t from-black via-black/80 to-transparent" />
     </div>
   );
 }
