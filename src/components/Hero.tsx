@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Music, Star, PlayCircle, Users } from "lucide-react";
 import HeroBackground from "./HeroBackground";
+import TypewriterText from "./TypewriterText";
 
 export default function Hero() {
   return (
@@ -28,7 +29,8 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-[1.1]"
           >
-            Aprenda a tocar do zero, de forma <span className="text-gradient">rápida e prática.</span>
+            Aprenda a tocar do zero, de forma{" "}
+            <TypewriterText words={["rápida.", "prática.", "divertida.", "sem enrolação."]} />
           </motion.h1>
 
           <motion.p 
