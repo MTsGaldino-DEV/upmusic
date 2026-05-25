@@ -13,7 +13,7 @@ export default function Hero() {
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -23,17 +23,17 @@ export default function Hero() {
             <span className="text-sm font-medium text-gray-200">A escola mais avaliada de Governador Valadares</span>
           </motion.div>
 
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-[1.1]"
           >
             Aprenda a tocar do zero, de forma{" "}
-            <TypewriterText words={["rápida.", "prática.", "divertida.", "sem enrolação."]} />
+            <TypewriterText words={["rápida.", "prática.", "divertida.", "e sem enrolação."]} />
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -42,23 +42,23 @@ export default function Hero() {
             Juntos em busca da realização do seu sonho! Método direto ao ponto, sem enrolação. Toque sua primeira música já na primeira aula.
           </motion.p>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <a 
-              href="https://wa.me/5533999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita." 
+            <a
+              href="https://wa.me/5533999999999?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20minha%20aula%20experimental%20gratuita."
               target="_blank" rel="noopener noreferrer"
               className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-[#8A2BE2] via-[#FF00FF] to-[#FF1493] text-white text-lg font-bold shadow-[0_0_20px_rgba(255,20,147,0.4)] hover:shadow-[0_0_35px_rgba(255,20,147,0.6)] transition-all transform hover:scale-105 flex items-center justify-center gap-2"
             >
               Agendar Aula Experimental Gratuita
               <PlayCircle className="w-5 h-5" />
             </a>
-            
-            <a 
-              href="https://wa.me/5533999999999?text=Gostaria%20de%20falar%20com%20um%20professor." 
+
+            <a
+              href="https://wa.me/5533999999999?text=Gostaria%20de%20falar%20com%20um%20professor."
               target="_blank" rel="noopener noreferrer"
               className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-white text-lg font-medium transition-all flex items-center justify-center"
             >
@@ -66,7 +66,7 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
